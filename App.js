@@ -1,5 +1,8 @@
+  import React from 'react';
   import {createAppContainer, createSwitchNavigator} from 'react-navigation';
   import {createStackNavigator} from 'react-navigation-stack';
+  import {createBottomTabNavigator} from 'react-navigation-tabs';
+  import {Ionicons} from '@expo/vector-icons'; 
 
   import * as firebase from "firebase";
 
@@ -7,6 +10,8 @@
   import LoginScreen from './screens/LoginScreen';
   import LoadingScreen from './screens/LoadingScreen';
   import RegisterScreen from './screens/RegisterScreen';
+  import ProfileScreen from './screens/ProfileScreen';
+  import JobsScreen from './screens/JobsScreen';
   
   // Your web app's Firebase configuration
   var firebaseConfig = {
@@ -25,9 +30,22 @@
     firebase.initializeApp(firebaseConfig);
   }
 
-  const AppStack = createStackNavigator({
-    Home: HomeScreen
-  });
+  const AppTabNavigator = createBottomTabNavigator(
+    {
+      Home: {
+        screen: HomeScreen,
+        navigationOptions: {
+          tabBarIcon: ({tintColor}) => <Ionicons name='ios-home' size={24} color={tintColor}/>
+        }
+      },
+      Profile: {
+        screen: ProfileScreen,
+        navigationOptions: {
+          tabBarIcon: ({tintColor}) => <Ionicons name='ios-chatboxes' size={24} color={tintColor}/>
+        }
+      }
+    }
+  );
 
   const AuthStack = createStackNavigator({
     Login: LoginScreen,
@@ -38,7 +56,7 @@
     createSwitchNavigator(
       {
         Loading: LoadingScreen,
-        App: AppStack,
+        App: AppTabNavigator,
         Auth: AuthStack
       },
       {

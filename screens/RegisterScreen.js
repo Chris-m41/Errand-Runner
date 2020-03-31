@@ -1,8 +1,13 @@
 import React from 'react';
-import {View, Text, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet, TextInput, TouchableOpacity, Image, StatusBar} from 'react-native';
+import {Ionicons} from '@expo/vector-icons';
 import * as firebase from 'firebase';
 
 export default class RegisterScreen extends React.Component{
+    static navigationOptions = {
+        headerShown: false
+    };
+
     state ={
         name: "",
         email: "",
@@ -25,7 +30,21 @@ export default class RegisterScreen extends React.Component{
     render(){
         return (
             <View style={styles.container}>
+                <StatusBar barStyle='light-content'></StatusBar>
+                
+                
+                {/* Image goes here just like in the login in screen */}
+
+
                 <Text style={styles.greeting}>{`Hello!\n Sign up to get started.`}</Text>
+                {/* <TouchableOpacity style={styles.avatar}>
+                    <Ionicons
+                        name='ios-add'
+                        size={40}
+                        color='#FFF'
+                        style={{marginTop:6, marginLeft:2}}
+                    ></Ionicons>
+                </TouchableOpacity> */}
 
                 <View style={styles.errorMessage}>
                     {this.state.errorMessage && <Text style={styles.error}>{this.state.errorMessage}</Text>}
@@ -57,6 +76,7 @@ export default class RegisterScreen extends React.Component{
                         <TextInput 
                         style={styles.input} 
                         autoCapitalize='none'
+                        secureTextEntry={true}
                         onChangeText={password => this.setState({password})}
                         value={this.state.password}
                         ></TextInput>
@@ -67,9 +87,12 @@ export default class RegisterScreen extends React.Component{
                     <Text style={{color: '#FFF', fontWeight: '500'}}>Sign up</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={{alignSelf: 'center', marginTop: 32}}>
+                <TouchableOpacity 
+                    style={{alignSelf: 'center', marginTop: 32}}
+                    onPress={() => this.props.navigation.navigate("Login")}
+                    >
                     <Text style={{color: '#414959', fontSize: 13}}>
-                        New to Social App? <Text style={{fontWeight: '500', color: '#E9446A'}}>Login</Text>
+                        Already have an account? <Text style={{fontWeight: '500', color: '#E9446A'}}>Login</Text>
                     </Text>
                 </TouchableOpacity>
 
@@ -84,10 +107,11 @@ const styles = StyleSheet.create({
 
     },
     greeting: {
-        marginTop: 32,
+        marginTop: 50,
         fontSize: 18,
         fontWeight: '400',
-        textAlign: 'center'
+        textAlign: 'center',
+        // color: '#FFF'
     },
     errorMessage: {
         height: 72,
@@ -124,5 +148,14 @@ const styles = StyleSheet.create({
         height: 52,
         alignItems: 'center',
         justifyContent: 'center'
+    },
+    avatar: {
+        width: 100,
+        height: 100,
+        borderRadius: 50,
+        backgroundColor: '#E1E2E6',
+        marginTop: 48,
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 })

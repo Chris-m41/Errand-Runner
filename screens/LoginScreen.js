@@ -1,8 +1,12 @@
 import React from 'react';
-import {View, Text, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet, TextInput, TouchableOpacity, Image, StatusBar, LayoutAnimation} from 'react-native';
 import * as firebase from 'firebase';
 
 export default class LoginScreen extends React.Component{
+    static navigationOptions = {
+        headerShown: false //Use to be know as: header: null
+    }
+
     state ={
         email: "",
         password: "",
@@ -21,6 +25,9 @@ export default class LoginScreen extends React.Component{
     render(){
         return (
             <View style={styles.container}>
+                <StatusBar barStyle="light-content"></StatusBar>
+                {/* This code to be used to add image at the top of the login screen */}
+                {/* <Image source={require("../assets/authHeader.png")}></Image>  */}
                 <Text style={styles.greeting}>{`Hello again.\nWelcome Back.`}</Text>
 
                 <View style={styles.errorMessage}>
@@ -43,6 +50,7 @@ export default class LoginScreen extends React.Component{
                         <TextInput 
                         style={styles.input} 
                         autoCapitalize='none'
+                        secureTextEntry={true}
                         onChangeText={password => this.setState({password})}
                         value={this.state.password}
                         ></TextInput>
@@ -70,7 +78,7 @@ const styles = StyleSheet.create({
 
     },
     greeting: {
-        marginTop: 32,
+        marginTop: 50,
         fontSize: 18,
         fontWeight: '400',
         textAlign: 'center'
