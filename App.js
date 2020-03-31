@@ -2,7 +2,7 @@
   import {createAppContainer, createSwitchNavigator} from 'react-navigation';
   import {createStackNavigator} from 'react-navigation-stack';
   import {createBottomTabNavigator} from 'react-navigation-tabs';
-  import {Ionicons} from '@expo/vector-icons'; 
+  import {Ionicons, FontAwesome, MaterialIcons} from '@expo/vector-icons'; 
 
   import * as firebase from "firebase";
 
@@ -32,16 +32,16 @@
 
   const AppTabNavigator = createBottomTabNavigator(
     {
-      Home: {
-        screen: HomeScreen,
+      Jobs: {
+        screen: JobsScreen,
         navigationOptions: {
-          tabBarIcon: ({tintColor}) => <Ionicons name='ios-home' size={24} color={tintColor}/>
+          tabBarIcon: ({tintColor}) => <MaterialIcons name='work' size={24} color={tintColor}/>
         }
       },
       Profile: {
         screen: ProfileScreen,
         navigationOptions: {
-          tabBarIcon: ({tintColor}) => <Ionicons name='ios-chatboxes' size={24} color={tintColor}/>
+          tabBarIcon: ({tintColor}) => <FontAwesome name='user-circle-o' size={24} color={tintColor}/>
         }
       }
     }

@@ -1,11 +1,32 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, LayoutAnimation} from 'react-native';
+import * as firebase from 'firebase';
 
-export default class ProfileScreen extends React.Component {
-    render() {
+export default class HomeScreen extends React.Component{
+    state = {
+        email: "",
+        displayName: ""
+    };
+
+    componentDidMount() {
+        const {email,displayName} = firebase.auth().currentUser;
+
+        this.setState({email,displayName});
+    };
+
+    signOutUser = () => {
+        firebase.auth().signOut();
+    };
+
+    render(){
+        LayoutAnimation.easeInEaseOut();
+
         return (
             <View style={styles.container}>
-                <Text>Profile Screen</Text>
+                <Text>Hi {this.state.displayName}!</Text>
+                <TouchableOpacity style={{marginTop: 32}} onPress={this.signOutUser}>
+                    <Text style={{backgroundColor: '#5FC9F8'}}>Logout</Text>
+                </TouchableOpacity>
             </View>
         );
     }
@@ -14,7 +35,7 @@ export default class ProfileScreen extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 })
