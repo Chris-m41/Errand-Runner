@@ -12,6 +12,7 @@ export default class RegisterScreen extends React.Component{
         name: "",
         email: "",
         password: "",
+        zipCode: "",
         errorMessage: null
     }
 
@@ -21,7 +22,8 @@ export default class RegisterScreen extends React.Component{
             .createUserWithEmailAndPassword(this.state.email, this.state.password)
             .then(userCredentials => {
                 return userCredentials.user.updateProfile({
-                    displayName: this.state.name
+                    displayName: this.state.name,
+                    body: this.state.zipCode
                 })
             })
             .catch(error => this.setState({errorMessage: error.message}));
@@ -60,6 +62,17 @@ export default class RegisterScreen extends React.Component{
                         value={this.state.name}
                         ></TextInput>
                     </View>
+
+                    <View style={{marginTop: 32}}>
+                        <Text style={styles.inputTitle}>zipCode</Text>
+                        <TextInput 
+                        style={styles.input} 
+                        autoCapitalize='none'
+                        onChangeText={zipCode => this.setState({zipCode})}
+                        value={this.state.zipCode}
+                        ></TextInput>
+                    </View>
+
 
                     <View style={{marginTop: 32}}>
                         <Text style={styles.inputTitle}>Email Address</Text>

@@ -6,7 +6,7 @@
 
   import * as firebase from "firebase";
 
-  import HomeScreen from './screens/HomeScreen';
+  import UpdateScreen from './screens/UpdateScreen';
   import LoginScreen from './screens/LoginScreen';
   import LoadingScreen from './screens/LoadingScreen';
   import RegisterScreen from './screens/RegisterScreen';
@@ -29,6 +29,7 @@
   if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
   }
+   
 
   const AppTabNavigator = createBottomTabNavigator(
     {
@@ -39,7 +40,7 @@
         }
       },
       Profile: {
-        screen: ProfileScreen,
+        screen: ProfileScreen,     
         navigationOptions: {
           tabBarIcon: ({tintColor}) => <FontAwesome name='user-circle-o' size={24} color={tintColor}/>
         }
@@ -56,6 +57,7 @@
     createSwitchNavigator(
       {
         Loading: LoadingScreen,
+        Update: UpdateScreen,
         App: AppTabNavigator,
         Auth: AuthStack
       },

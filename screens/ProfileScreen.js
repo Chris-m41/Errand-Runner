@@ -1,11 +1,13 @@
 import React from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, LayoutAnimation} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, LayoutAnimation, Button} from 'react-native';
 import * as firebase from 'firebase';
+import HomeScreen from './UpdateScreen';
 
-export default class HomeScreen extends React.Component{
+export default class ProfileScreen extends React.Component{
     state = {
         email: "",
-        displayName: ""
+        displayName: "",
+        body: ""
     };
 
     componentDidMount() {
@@ -24,8 +26,12 @@ export default class HomeScreen extends React.Component{
         return (
             <View style={styles.container}>
                 <Text>Hi {this.state.displayName}!</Text>
-                <TouchableOpacity style={{marginTop: 32}} onPress={this.signOutUser}>
-                    <Text style={{backgroundColor: '#5FC9F8'}}>Logout</Text>
+                <Text>zipCode {this.state.body}!</Text>
+                <TouchableOpacity style={styles.logout} onPress={this.signOutUser}>
+                    <Text>Logout</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.logout} onPress={() => this.props.navigation.navigate('Update')}>
+                    <Text>Update Info</Text>
                 </TouchableOpacity>
             </View>
         );
@@ -37,5 +43,8 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center'
+    },
+    logout: {
+        marginTop: 32,
     }
 })
