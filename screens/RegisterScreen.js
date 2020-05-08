@@ -2,6 +2,9 @@ import React from 'react';
 import {View, Text, StyleSheet, TextInput, TouchableOpacity, Image, StatusBar} from 'react-native';
 import {Ionicons} from '@expo/vector-icons';
 import * as firebase from 'firebase';
+import database from '@react-native-firebase/database';
+
+
 
 export default class RegisterScreen extends React.Component{
     static navigationOptions = {
@@ -28,6 +31,19 @@ export default class RegisterScreen extends React.Component{
             })
             .catch(error => this.setState({errorMessage: error.message}));
     };
+
+
+    //testing write/set user data to google firebase
+    // Get a reference to the database service
+    database = firebase.database();
+
+    writeUserData(userId, name, email) {
+        firebase.database().ref('users/' + userId).set({
+          username: name,
+          email: email,
+        });
+      }
+
 
     render(){
         return (

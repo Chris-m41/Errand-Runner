@@ -2,12 +2,15 @@ import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, LayoutAnimation, Button} from 'react-native';
 import * as firebase from 'firebase';
 import HomeScreen from './UpdateScreen';
+import database from '@react-native-firebase/database';
+
+
 
 export default class ProfileScreen extends React.Component{
     state = {
         email: "",
         displayName: "",
-        body: ""
+        zipCode: ""
     };
 
     componentDidMount() {
@@ -15,6 +18,11 @@ export default class ProfileScreen extends React.Component{
 
         this.setState({email,displayName});
     };
+
+    //testing read data
+    // Get a reference to the database service
+     database = firebase.database();
+    
 
     signOutUser = () => {
         firebase.auth().signOut();
@@ -26,7 +34,7 @@ export default class ProfileScreen extends React.Component{
         return (
             <View style={styles.container}>
                 <Text>Hi {this.state.displayName}!</Text>
-                <Text>zipCode {this.state.body}!</Text>
+                <Text>ZipCode: {this.state.zipCode}!</Text>
                 <TouchableOpacity style={styles.logout} onPress={this.signOutUser}>
                     <Text>Logout</Text>
                 </TouchableOpacity>
