@@ -49,10 +49,15 @@
     }
   );
 
+  // const RegisterStack = createStackNavigator({
+  //   Register: RegisterScreen,
+  //   Info: PersonalInfoScreen
+  // })
+
   const AuthStack = createStackNavigator({
     Login: LoginScreen,
-    Info: PersonalInfoScreen,
-    Register: RegisterScreen
+    Register: RegisterScreen,
+    Info: PersonalInfoScreen
   });
 
   export default createAppContainer(

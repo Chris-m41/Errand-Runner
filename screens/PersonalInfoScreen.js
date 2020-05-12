@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet, TextInput, TouchableOpacity, Image, StatusBar} from 'react-native';
+import {View, Text, StyleSheet, TextInput, TouchableOpacity, Image, StatusBar, Alert} from 'react-native';
 import {Ionicons} from '@expo/vector-icons';
 import * as firebase from 'firebase';
 import database from '@react-native-firebase/database';
@@ -19,19 +19,25 @@ export default class PersonalInfoScreen extends React.Component{
         errorMessage: null
     }
 
-    createUserInfo = () => {
+    createUserInfo(){
         var newPostKey = firebase.database().ref().child('Users').push().key;
+        var user = firebase.auth().currentUser;
 
         var updates = {};
-        updates["/Users/" + newPostKey] = {
+        updates["/Users/" + user.uid] = {
             address: this.state.address,
-            name: this.state.zipCode,
+            zipCode: this.state.zipCode,
             State: this.state.State,
             phoneNumber: this.state.phoneNumber
         };
         return firebase.database().ref().update(updates);
     }
 
+    onButtonPress = () => {
+        this.createUserInfo();
+        Alert.alert('Info Saved');
+        this.props.navigation.navigate('Profile');
+    }
 
     //testing write/set user data to google firebase
     // Get a reference to the database service
@@ -107,7 +113,7 @@ export default class PersonalInfoScreen extends React.Component{
                     </View>
                 {/* </View> */}
 
-                <TouchableOpacity style={styles.button} onPress={this.createUserInfo}>
+                <TouchableOpacity style={styles.button} onPress={this.onButtonPress}>
                     <Text style={{color: '#FFF', fontWeight: '500'}}>Sign up</Text>
                 </TouchableOpacity>
 

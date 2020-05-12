@@ -14,10 +14,11 @@ export default class ProfileScreen extends React.Component{
     };
 
     componentDidMount() {
-        const {email,displayName} = firebase.auth().currentUser;
+        const {email,displayName, zipCode} = firebase.auth().currentUser;
 
-        this.setState({email,displayName});
+        this.setState({email,displayName,zipCode});
     };
+
 
     //testing read data
     // Get a reference to the database service
@@ -34,12 +35,17 @@ export default class ProfileScreen extends React.Component{
         return (
             <View style={styles.container}>
                 <Text>Hi {this.state.displayName}!</Text>
-                <Text>ZipCode: {this.state.zipCode}!</Text>
+                <Text>ZipCode: {this.retrieveZip}!</Text>
+
                 <TouchableOpacity style={styles.logout} onPress={this.signOutUser}>
                     <Text>Logout</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.logout} onPress={() => this.props.navigation.navigate('Update')}>
                     <Text>Update Info</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity style={styles.logout} onPress={() => this.props.navigation.navigate('Info')}>
+                    <Text>Add/Change Information</Text>
                 </TouchableOpacity>
             </View>
         );
@@ -54,5 +60,6 @@ const styles = StyleSheet.create({
     },
     logout: {
         marginTop: 32,
+        backgroundColor: 'pink'
     }
 })

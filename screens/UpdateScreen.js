@@ -4,9 +4,9 @@ import * as firebase from 'firebase';
 import { TextInput } from 'react-native-gesture-handler';
 
 export default class UpdateScreen extends React.Component{
-    update = {
-        displayName: this.state.name
-    }
+    // update = {
+    //     displayName: this.state.name
+    // }
     //TODO: Fix user infoupdate info. 
     handleUpdate = () => {
         firebase.auth().currentUser.updateProfile(update)
@@ -22,7 +22,7 @@ export default class UpdateScreen extends React.Component{
 
         this.setState({email,displayName});
     };
-
+    //  var user = firebase.auth().currentUser;
     render(){
         LayoutAnimation.easeInEaseOut();
 
@@ -31,10 +31,10 @@ export default class UpdateScreen extends React.Component{
                 <Text>Update profile screen</Text>
                 <View>
                     <Text style={styles.inputTitle}>Full Name</Text>
+                    <Text style={styles.inputTitle}>{this.state.displayName}</Text>
                     <TextInput 
                     style={styles.input} 
                     autoCapitalize='none'
-                    onChangeText={displayName => this.setState({displayName})}
                     value={this.state.displayName}
                     ></TextInput>
                     </View>

@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet, TextInput, TouchableOpacity, Image, StatusBar} from 'react-native';
+import {View, Text, StyleSheet, TextInput, TouchableOpacity, Image, StatusBar, ScrollView} from 'react-native';
 import {Ionicons} from '@expo/vector-icons';
 import * as firebase from 'firebase';
 import database from '@react-native-firebase/database';
@@ -28,6 +28,7 @@ export default class RegisterScreen extends React.Component{
                 })
             })
             .catch(error => this.setState({errorMessage: error.message}));
+        
     };
 
 
@@ -35,7 +36,7 @@ export default class RegisterScreen extends React.Component{
     // Get a reference to the database service
     render(){
         return (
-            <View style={styles.container}>
+            <ScrollView style={styles.container}>
                 <StatusBar barStyle='light-content'></StatusBar>
                 
                 
@@ -67,15 +68,8 @@ export default class RegisterScreen extends React.Component{
                         ></TextInput>
                     </View>
 
-                    <View style={{marginTop: 32}}>
-                        <Text style={styles.inputTitle}>zipCode</Text>
-                        <TextInput 
-                        style={styles.input} 
-                        autoCapitalize='none'
-                        onChangeText={zipCode => this.setState({zipCode})}
-                        value={this.state.zipCode}
-                        ></TextInput>
-                    </View>
+                    
+                
 
 
                     <View style={{marginTop: 32}}>
@@ -113,7 +107,7 @@ export default class RegisterScreen extends React.Component{
                     </Text>
                 </TouchableOpacity>
 
-            </View>
+            </ScrollView>
         );
     }
 }
