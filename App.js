@@ -12,6 +12,7 @@
   import RegisterScreen from './screens/RegisterScreen';
   import ProfileScreen from './screens/ProfileScreen';
   import JobsScreen from './screens/JobsScreen';
+  import PersonalInfoScreen from './screens/PersonalInfoScreen';
   
   // Your web app's Firebase configuration
   var firebaseConfig = {
@@ -50,6 +51,7 @@
 
   const AuthStack = createStackNavigator({
     Login: LoginScreen,
+    Info: PersonalInfoScreen,
     Register: RegisterScreen
   });
 

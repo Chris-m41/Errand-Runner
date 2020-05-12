@@ -21,7 +21,7 @@ export default class ProfileScreen extends React.Component{
 
     //testing read data
     // Get a reference to the database service
-     database = firebase.database();
+    //  database = firebase.database();
     
 
     signOutUser = () => {

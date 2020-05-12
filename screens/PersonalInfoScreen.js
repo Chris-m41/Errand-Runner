@@ -6,29 +6,31 @@ import database from '@react-native-firebase/database';
 
 
 
-export default class RegisterScreen extends React.Component{
+export default class PersonalInfoScreen extends React.Component{
     static navigationOptions = {
         headerShown: false
     };
 
     state ={
-        name: "",
-        email: "",
-        password: "",
+        address: "",
+        zipCode: "",
+        State: "",
+        phoneNumber: "",
         errorMessage: null
     }
 
-    handleSignUp = () => {
-        firebase
-            .auth()
-            .createUserWithEmailAndPassword(this.state.email, this.state.password)
-            .then(userCredentials => {
-                return userCredentials.user.updateProfile({
-                    displayName: this.state.name
-                })
-            })
-            .catch(error => this.setState({errorMessage: error.message}));
-    };
+    createUserInfo = () => {
+        var newPostKey = firebase.database().ref().child('Users').push().key;
+
+        var updates = {};
+        updates["/Users/" + newPostKey] = {
+            address: this.state.address,
+            name: this.state.zipCode,
+            State: this.state.State,
+            phoneNumber: this.state.phoneNumber
+        };
+        return firebase.database().ref().update(updates);
+    }
 
 
     //testing write/set user data to google firebase
@@ -58,12 +60,22 @@ export default class RegisterScreen extends React.Component{
 
                 <View style={styles.form}>
                     <View>
-                        <Text style={styles.inputTitle}>Full Name</Text>
+                        <Text style={styles.inputTitle}>Street Address</Text>
                         <TextInput 
                         style={styles.input} 
                         autoCapitalize='none'
-                        onChangeText={name => this.setState({name})}
-                        value={this.state.name}
+                        onChangeText={address => this.setState({address})}
+                        value={this.state.address}
+                        ></TextInput>
+                    </View>
+
+                    <View style={{marginTop: 32}}>
+                        <Text style={styles.inputTitle}>State</Text>
+                        <TextInput 
+                        style={styles.input} 
+                        autoCapitalize='none'
+                        onChangeText={State => this.setState({State})}
+                        value={this.state.State}
                         ></TextInput>
                     </View>
 
@@ -74,43 +86,29 @@ export default class RegisterScreen extends React.Component{
                         autoCapitalize='none'
                         onChangeText={zipCode => this.setState({zipCode})}
                         value={this.state.zipCode}
+                        maxLength={5}
+                        keyboardType={'numeric'}
                         ></TextInput>
                     </View>
 
 
                     <View style={{marginTop: 32}}>
-                        <Text style={styles.inputTitle}>Email Address</Text>
+                        <Text style={styles.inputTitle}>Phone Number</Text>
                         <TextInput 
                         style={styles.input} 
                         autoCapitalize='none'
-                        onChangeText={email => this.setState({email})}
-                        value={this.state.email}
+                        onChangeText={phoneNumber => this.setState({phoneNumber})}
+                        value={this.state.phoneNumber}
+                        maxLength={10}
+                        keyboardType={'numeric'}
                         ></TextInput>
                     </View>
-
-                    <View style={{marginTop: 32}}>
-                        <Text style={styles.inputTitle}>Password</Text>
-                        <TextInput 
-                        style={styles.input} 
-                        autoCapitalize='none'
-                        secureTextEntry={true}
-                        onChangeText={password => this.setState({password})}
-                        value={this.state.password}
-                        ></TextInput>
+                    
                     </View>
-                </View>
+                {/* </View> */}
 
-                <TouchableOpacity style={styles.button} onPress={this.handleSignUp}>
+                <TouchableOpacity style={styles.button} onPress={this.createUserInfo}>
                     <Text style={{color: '#FFF', fontWeight: '500'}}>Sign up</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity 
-                    style={{alignSelf: 'center', marginTop: 32}}
-                    onPress={() => this.props.navigation.navigate("Login")}
-                    >
-                    <Text style={{color: '#414959', fontSize: 13}}>
-                        Already have an account? <Text style={{fontWeight: '500', color: '#E9446A'}}>Login</Text>
-                    </Text>
                 </TouchableOpacity>
 
             </View>
