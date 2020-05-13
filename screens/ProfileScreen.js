@@ -10,20 +10,41 @@ export default class ProfileScreen extends React.Component{
     state = {
         email: "",
         displayName: "",
-        zipCode: ""
+        zipCode: "",
+        address: "",
+        phoneNumber: "",
+        State: "",
+        city: ""
     };
 
     componentDidMount() {
-        const {email,displayName, zipCode} = firebase.auth().currentUser;
+        const {email,displayName} = firebase.auth().currentUser;
+        this.setState({email,displayName});
 
-        this.setState({email,displayName,zipCode});
+
+        var user = firebase.auth().currentUser;
+        firebase.database().ref('Users/' + user.uid).once('value').then(snapshot => {
+            console.log('User data: ', snapshot.val())
+            console.log('Zip code(Single Object) ', snapshot.child('zipCode').val())
+            var zipCode = snapshot.child('zipCode').val();
+            var address = snapshot.child('address').val();
+            var phoneNumber = snapshot.child('phoneNumber').val();
+            var State = snapshot.child('State').val();
+            var city = snapshot.child('city').val();
+            this.setState({zipCode,address,phoneNumber,State,city})
+        })
+
     };
+      
+    // retrieveUserInfo()  {
+    //     var userId = firebase.auth().currentUser;
+    //     var zip = firebase.database().ref('users/' + userId + '/zipCode');
+    //     console.log(zip);
+        
+        
+    // }
 
-
-    //testing read data
-    // Get a reference to the database service
-    //  database = firebase.database();
-    
+   
 
     signOutUser = () => {
         firebase.auth().signOut();
@@ -35,8 +56,8 @@ export default class ProfileScreen extends React.Component{
         return (
             <View style={styles.container}>
                 <Text>Hi {this.state.displayName}!</Text>
-                <Text>ZipCode: {this.retrieveZip}!</Text>
-
+                <Text>Address: {this.state.address} {this.state.city} {this.state.State}, {this.state.zipCode}</Text>
+                <Text>Phone Number: {this.state.phoneNumber}</Text>
                 <TouchableOpacity style={styles.logout} onPress={this.signOutUser}>
                     <Text>Logout</Text>
                 </TouchableOpacity>

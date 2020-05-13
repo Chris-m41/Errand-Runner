@@ -16,11 +16,11 @@ export default class PersonalInfoScreen extends React.Component{
         zipCode: "",
         State: "",
         phoneNumber: "",
+        city: "",
         errorMessage: null
     }
 
     createUserInfo(){
-        var newPostKey = firebase.database().ref().child('Users').push().key;
         var user = firebase.auth().currentUser;
 
         var updates = {};
@@ -28,8 +28,10 @@ export default class PersonalInfoScreen extends React.Component{
             address: this.state.address,
             zipCode: this.state.zipCode,
             State: this.state.State,
-            phoneNumber: this.state.phoneNumber
+            phoneNumber: this.state.phoneNumber,
+            city: this.state.city
         };
+        console.log("user id (update page): " + user.id)
         return firebase.database().ref().update(updates);
     }
 
@@ -74,6 +76,17 @@ export default class PersonalInfoScreen extends React.Component{
                         value={this.state.address}
                         ></TextInput>
                     </View>
+
+                    <View>
+                        <Text style={styles.inputTitle}>city</Text>
+                        <TextInput 
+                        style={styles.input} 
+                        autoCapitalize='none'
+                        onChangeText={city => this.setState({city})}
+                        value={this.state.city}
+                        ></TextInput>
+                    </View>
+
 
                     <View style={{marginTop: 32}}>
                         <Text style={styles.inputTitle}>State</Text>
