@@ -13,6 +13,7 @@
   import ProfileScreen from './screens/ProfileScreen';
   import JobsScreen from './screens/JobsScreen';
   import PersonalInfoScreen from './screens/PersonalInfoScreen';
+import AddJob from './screens/AddJob';
   
   // Your web app's Firebase configuration
   var firebaseConfig = {
@@ -64,7 +65,7 @@
     createSwitchNavigator(
       {
         Loading: LoadingScreen,
-        Update: UpdateScreen,
+        Add: AddJob,
         App: AppTabNavigator,
         Auth: AuthStack
       },

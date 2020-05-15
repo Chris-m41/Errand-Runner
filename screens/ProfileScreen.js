@@ -55,18 +55,26 @@ export default class ProfileScreen extends React.Component{
 
         return (
             <View style={styles.container}>
+
+                {/* User Information */}
+
                 <Text>Hi {this.state.displayName}!</Text>
+                <Text>Email: {this.state.email}</Text>
                 <Text>Address: {this.state.address} {this.state.city} {this.state.State}, {this.state.zipCode}</Text>
                 <Text>Phone Number: {this.state.phoneNumber}</Text>
-                <TouchableOpacity style={styles.logout} onPress={this.signOutUser}>
-                    <Text>Logout</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.logout} onPress={() => this.props.navigation.navigate('Update')}>
-                    <Text>Update Info</Text>
+
+                {/* Logout/ change info/ add job */}
+
+                <TouchableOpacity style={styles.logout} onPress={() => this.props.navigation.navigate('Add')}>
+                    <Text>Add Job</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity style={styles.logout} onPress={() => this.props.navigation.navigate('Info')}>
                     <Text>Add/Change Information</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity style={styles.logout} onPress={this.signOutUser}>
+                    <Text>Logout</Text>
                 </TouchableOpacity>
             </View>
         );
