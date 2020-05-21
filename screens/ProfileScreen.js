@@ -36,15 +36,7 @@ export default class ProfileScreen extends React.Component{
 
     };
       
-    // retrieveUserInfo()  {
-    //     var userId = firebase.auth().currentUser;
-    //     var zip = firebase.database().ref('users/' + userId + '/zipCode');
-    //     console.log(zip);
-        
-        
-    // }
 
-   
 
     signOutUser = () => {
         firebase.auth().signOut();

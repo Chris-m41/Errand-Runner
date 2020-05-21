@@ -23,6 +23,7 @@ export default class AddJob extends React.Component {
         phoneNumber: "",
         State: "",
         city: "",
+        title: "",
         description: "",
         price: "",
         category: "",
@@ -49,7 +50,7 @@ export default class AddJob extends React.Component {
         })
     }
 
-    createJobPost = () => {
+    createJobPost(){
         var userId = firebase.auth().currentUser.uid;
         var category = this.state.user;
         var newPostKey = firebase.database().ref().child('Jobs/' + category).push().key;
@@ -63,15 +64,26 @@ export default class AddJob extends React.Component {
             phoneNumber: this.state.phoneNumber, // from database
             price: this.state.price, // new input
             userId: userId, // From database
-            category: this.state.user // new input
+            category: this.state.user, // new input
+            title: this.state.title
             }
-            if(category == null || this.statedescription == null || this.state.price == null){
+            console.log("this.state.user: after updates : " + this.state.user)
+            if(category == null || this.state.description == null || this.state.price == null || this.state.title == null){
                 Alert.alert('Missing information')
+                console.log("Missing information")
                 return
-            }
+            } 
+            
         return firebase.database().ref().update(updates)
     }
 
+    addJobPost = () => {
+        this.createJobPost();
+        Alert.alert('Information saved')
+        console.log("information saved")
+        this.props.navigation.navigate('Profile')
+        
+    }
    
 
     render() {
@@ -79,6 +91,16 @@ export default class AddJob extends React.Component {
             <View style={styles.container}>
                 <Text> Add Job Screen </Text>
      
+                <View>
+                    <Text>Title:</Text>
+                    <TextInput
+                        style={styles.input}
+                        autoCapitalize='none'
+                        onChangeText={title => this.setState({title})}
+                        value={this.state.title}
+                    ></TextInput>
+                </View>
+                
                 <View>
                     <Text>description:</Text>
                     <TextInput
@@ -115,7 +137,7 @@ export default class AddJob extends React.Component {
             </View>
             
 
-            <TouchableOpacity style={styles.button} onPress={this.createJobPost}>
+            <TouchableOpacity style={styles.button} onPress={this.addJobPost}>
                     <Text style={{color: '#FFF', fontWeight: '500'}}>Sign up</Text>
                 </TouchableOpacity>
             
