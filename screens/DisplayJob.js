@@ -44,6 +44,29 @@ export default class DisplayJobScreen extends React.Component {
           });
     }
 
+
+    // const getCircularReplacer = () => {
+    //   const seen = new WeakSet();
+    //   return (key, value) => {
+    //     if (typeof value === "object" && value !== null) {
+    //       if (seen.has(value)) {
+    //         return;
+    //       }
+    //       seen.add(value);
+    //     }
+    //     return value;
+    //   };
+    // };
+
+
+    sendInfo = (key) => {
+      console.log("1234 key 1234" + key)
+      global.key = key
+      console.log("1234 key string? 1234" + global.key)
+      // global.key = key;
+      this.props.navigation.navigate('JobInfo')
+    }
+
     render() {
         return (
             <View style={styles.container}>
@@ -56,6 +79,7 @@ export default class DisplayJobScreen extends React.Component {
                 <View style={{flex: 1, alignItems: 'center',justifyContent: 'center', marginTop: 50}}>
                 <FlatList
               data={this.state.dataSource}
+              keyExtractor={this.keyExtractor}
               renderItem={({ item }) => (
                 <View>
                   <ScrollView horizontal={true}>
@@ -71,7 +95,7 @@ export default class DisplayJobScreen extends React.Component {
                     </TouchableWithoutFeedback> */}
                     
                       <View >
-                        <TouchableOpacity style={{flexDirection: 'row'}} onPress={() => this.props.navigation.navigate('JobInfo')}>
+                        <TouchableOpacity style={{flexDirection: 'row'}} data-id={item.key} onPress={this.sendInfo.bind(this, item.key)}>
                         <Text>{item.title} </Text>
                         <Text>${item.price}</Text>
                         </TouchableOpacity>

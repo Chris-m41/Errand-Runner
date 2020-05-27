@@ -28,7 +28,7 @@ export default class JobInfoScreen extends React.Component{
         this.setState({email,displayName});
 
         const key = 'Jobs/' + global.MyVar + '/' + global.key
-        console.log("globalkey: " + global.key)
+        console.log("key: (jobs info); " + global.MyVar)
         var user = firebase.auth().currentUser;
         firebase.database().ref(key).once('value').then(snapshot => {
             console.log('User data: ', snapshot.val())
