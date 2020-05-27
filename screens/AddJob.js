@@ -5,18 +5,6 @@ import database from '@react-native-firebase/database';
 
 export default class AddJob extends React.Component {
 
-    // state = {
-    //     description: "",
-    //     city: "",
-    //     State: "",
-    //     zipCode: "",
-    //     price: "",
-    //     userId: "",
-    //     phoneNumber: "",
-    //     category: "",
-    //     user: ""
-    // }
-
     state = {
         zipCode: "",
         address: "",
@@ -27,7 +15,9 @@ export default class AddJob extends React.Component {
         description: "",
         price: "",
         category: "",
-        user: ""
+        user: "",
+        name: "",
+        email: ""
     }
 
     updateUser = (user) => {
@@ -37,7 +27,8 @@ export default class AddJob extends React.Component {
 
     componentDidMount = () => {
         var userId = firebase.auth().currentUser.uid;
-
+        const {email,displayName} = firebase.auth().currentUser;
+        this.setState({name: displayName, email: email})
         firebase.database().ref('Users/' + userId).once('value').then(snapshot => {
             
             var zipCode = snapshot.child('zipCode').val();
@@ -65,7 +56,9 @@ export default class AddJob extends React.Component {
             price: this.state.price, // new input
             userId: userId, // From database
             category: this.state.user, // new input
-            title: this.state.title
+            title: this.state.title,
+            name: this.state.name,
+            email: this.state.email
             }
             console.log("this.state.user: after updates : " + this.state.user)
             if(category == null || this.state.description == null || this.state.price == null || this.state.title == null){

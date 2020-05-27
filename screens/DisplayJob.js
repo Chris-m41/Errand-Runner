@@ -5,6 +5,7 @@ import Ionicons from '@expo/vector-icons'
 export default class DisplayJobScreen extends React.Component {
     
     constructor(props) {
+      global.key ='key_value_here'
         super(props);
         
         this.tasksRef = firebase.database().ref("/Jobs/" + global.MyVar);
@@ -26,13 +27,15 @@ export default class DisplayJobScreen extends React.Component {
         tasksRef.on("value", dataSnapshot => {
             var tasks = [];
             dataSnapshot.forEach(child => {
-                console.log("name: " + child.child('description').val()),
+                console.log("name: " + child.child('title').val()),
                 console.log("key: " + child.key)
               tasks.push({
-                name: child.child('description').val(),
+                title: child.child('title').val(),
                 key: child.key,
+                price: child.child('price').val()
               });
-              
+              global.key = child.key;
+              console.log("global key with listen for tasks"+global.key)
             });
       
             this.setState({
@@ -44,11 +47,13 @@ export default class DisplayJobScreen extends React.Component {
     render() {
         return (
             <View style={styles.container}>
+          
                 <TouchableOpacity onPress={() => this.props.navigation.navigate('Jobs')}>
                     <Text>Go Back</Text>
                 </TouchableOpacity>
+               
                 <Text>Display Jobs Screen: {global.MyVar}</Text>     
-                <View>
+                <View style={{flex: 1, alignItems: 'center',justifyContent: 'center', marginTop: 50}}>
                 <FlatList
               data={this.state.dataSource}
               renderItem={({ item }) => (
@@ -65,9 +70,10 @@ export default class DisplayJobScreen extends React.Component {
                       </View>
                     </TouchableWithoutFeedback> */}
                     
-                      <View>
-                        <TouchableOpacity onPress={() => this.props.navigation.navigate('JobInfo')}>
-                        <Text>{item.name} </Text>
+                      <View >
+                        <TouchableOpacity style={{flexDirection: 'row'}} onPress={() => this.props.navigation.navigate('JobInfo')}>
+                        <Text>{item.title} </Text>
+                        <Text>${item.price}</Text>
                         </TouchableOpacity>
                       </View>
                 
@@ -85,7 +91,8 @@ export default class DisplayJobScreen extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        justifyContent: 'center',
         alignItems: 'center',
-        justifyContent: 'center'
+        marginTop: 100
     }
 })

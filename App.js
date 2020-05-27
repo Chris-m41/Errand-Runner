@@ -16,6 +16,7 @@
   import AddJob from './screens/AddJob';
   import DisplayJobScreen from './screens/DisplayJob';
   import JobInfoScreen from './screens/JobInfoScreen';
+import HireScreen from './screens/HireScreen';
   
   // Your web app's Firebase configuration
   var firebaseConfig = {
@@ -70,6 +71,7 @@
         Add: AddJob,
         Display: DisplayJobScreen,
         JobInfo: JobInfoScreen,
+        Hire: HireScreen,
         App: AppTabNavigator,
         Auth: AuthStack
       },
