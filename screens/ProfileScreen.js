@@ -65,6 +65,10 @@ export default class ProfileScreen extends React.Component{
                     <Text>Add/Change Information</Text>
                 </TouchableOpacity>
 
+                <TouchableOpacity style={styles.logout} onPress={() => this.props.navigation.navigate('Messages')}>
+                    <Text>View Messages</Text>
+                </TouchableOpacity>
+
                 <TouchableOpacity style={styles.logout} onPress={this.signOutUser}>
                     <Text>Logout</Text>
                 </TouchableOpacity>

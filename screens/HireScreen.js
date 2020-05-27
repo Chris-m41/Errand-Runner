@@ -43,7 +43,9 @@ export default class HireScreen extends Component {
             phoneNumber: this.state.phoneNumber,
             zipCode: this.state.zipCode,
             name: this.state.displayName,
-            email: this.state.email
+            email: this.state.email,
+            title: global.title,
+            price: global.price
         }
         // this.props.navigation.navigate('Jobs')
         // console.log("name " + displayName)

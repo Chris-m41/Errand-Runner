@@ -44,21 +44,6 @@ export default class DisplayJobScreen extends React.Component {
           });
     }
 
-
-    // const getCircularReplacer = () => {
-    //   const seen = new WeakSet();
-    //   return (key, value) => {
-    //     if (typeof value === "object" && value !== null) {
-    //       if (seen.has(value)) {
-    //         return;
-    //       }
-    //       seen.add(value);
-    //     }
-    //     return value;
-    //   };
-    // };
-
-
     sendInfo = (key) => {
       console.log("1234 key 1234" + key)
       global.key = key

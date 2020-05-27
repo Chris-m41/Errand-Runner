@@ -46,6 +46,7 @@ export default class PersonalInfoScreen extends React.Component{
     render(){
         return (
             <View style={styles.container}>
+                
                 <StatusBar barStyle='light-content'></StatusBar>
                 
                 
@@ -53,6 +54,9 @@ export default class PersonalInfoScreen extends React.Component{
 
 
                 <Text style={styles.greeting}>{`Hello!\n Sign up to get started.`}</Text>
+                <TouchableOpacity onPress={() => this.props.navigation.navigate('Profile')}>
+                    <Text> Go back</Text>
+                </TouchableOpacity>
                 {/* <TouchableOpacity style={styles.avatar}>
                     <Ionicons
                         name='ios-add'
