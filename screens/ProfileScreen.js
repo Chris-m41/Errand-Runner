@@ -1,10 +1,6 @@
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, LayoutAnimation, Button} from 'react-native';
 import * as firebase from 'firebase';
-import HomeScreen from './UpdateScreen';
-import database from '@react-native-firebase/database';
-
-
 
 export default class ProfileScreen extends React.Component{
     state = {

@@ -1,10 +1,6 @@
 import React from 'react';
 import {View, Text, StyleSheet, TextInput, TouchableOpacity, Image, StatusBar, ScrollView} from 'react-native';
-import {Ionicons} from '@expo/vector-icons';
 import * as firebase from 'firebase';
-import database from '@react-native-firebase/database';
-
-
 
 export default class RegisterScreen extends React.Component{
     static navigationOptions = {

@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Text, StyleSheet, View, TouchableOpacity, Alert } from 'react-native'
 import * as firebase from "firebase";
-import database from '@react-native-firebase/database';
 
 export default class HireScreen extends Component {
     state = {

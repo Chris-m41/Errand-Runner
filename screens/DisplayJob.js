@@ -1,7 +1,7 @@
 import React from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, FlatList, ScrollView, TouchableWithoutFeedback} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, FlatList, ScrollView} from 'react-native';
 import * as firebase from 'firebase';
-import Ionicons from '@expo/vector-icons'
+
 export default class DisplayJobScreen extends React.Component {
     
     constructor(props) {

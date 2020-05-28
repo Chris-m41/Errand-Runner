@@ -1,7 +1,6 @@
 import React from 'react';
 import { Text, StyleSheet, View, TextInput, Picker, TouchableOpacity, Alert } from 'react-native';
 import * as firebase from 'firebase';
-import database from '@react-native-firebase/database';
 
 export default class AddJob extends React.Component {
 

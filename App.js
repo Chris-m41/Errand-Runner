@@ -2,11 +2,10 @@
   import {createAppContainer, createSwitchNavigator} from 'react-navigation';
   import {createStackNavigator} from 'react-navigation-stack';
   import {createBottomTabNavigator} from 'react-navigation-tabs';
-  import {Ionicons, FontAwesome, MaterialIcons} from '@expo/vector-icons'; 
+  import {FontAwesome, MaterialIcons} from '@expo/vector-icons'; 
 
   import * as firebase from "firebase";
 
-  import UpdateScreen from './screens/UpdateScreen';
   import LoginScreen from './screens/LoginScreen';
   import LoadingScreen from './screens/LoadingScreen';
   import RegisterScreen from './screens/RegisterScreen';
@@ -53,11 +52,6 @@ import MessagesScreen from './screens/MessagesScreen';
       }
     }
   );
-
-  // const RegisterStack = createStackNavigator({
-  //   Register: RegisterScreen,
-  //   Info: PersonalInfoScreen
-  // })
 
   const AuthStack = createStackNavigator({
     Login: LoginScreen,
