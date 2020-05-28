@@ -91,15 +91,15 @@ export default class RegisterScreen extends React.Component{
                 </View>
 
                 <TouchableOpacity style={styles.button} onPress={this.handleSignUp}>
-                    <Text style={{color: '#FFF', fontWeight: '500'}}>Sign up</Text>
+                    <Text style={{color: '#FFF', fontWeight: '500', fontSize: 22}}>Sign Up</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity 
                     style={{alignSelf: 'center', marginTop: 32}}
                     onPress={() => this.props.navigation.navigate("Login")}
                     >
-                    <Text style={{color: '#414959', fontSize: 13}}>
-                        Already have an account? <Text style={{fontWeight: '500', color: '#E9446A'}}>Login</Text>
+                    <Text style={{color: '#414959', fontSize: 18}}>
+                        Already have an account? <Text style={{fontWeight: '500', color: '#2971ff'}}>Login</Text>
                     </Text>
                 </TouchableOpacity>
 
@@ -111,7 +111,7 @@ export default class RegisterScreen extends React.Component{
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-
+        backgroundColor: '#fcfcfc'
     },
     greeting: {
         marginTop: 50,
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
     },
     inputTitle: {
         color: '#8A8F9E',
-        fontSize: 10,
+        fontSize: 15,
         textTransform: 'uppercase'
     },
     input: {
@@ -150,12 +150,12 @@ const styles = StyleSheet.create({
     },
     button: {
         marginHorizontal: 30,
-        backgroundColor: '#E9446A',
+        backgroundColor: '#2971ff',
         borderRadius: 4,
         height: 52,
         alignItems: 'center',
-        justifyContent: 'center'
-    },
+        justifyContent: 'center',
+        },
     avatar: {
         width: 100,
         height: 100,

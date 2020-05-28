@@ -33,6 +33,7 @@ import MessagesScreen from './screens/MessagesScreen';
   // firebase.initializeApp(firebaseConfig);
   if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
+    // firebase.analytics();
   }
    
 

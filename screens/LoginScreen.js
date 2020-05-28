@@ -58,12 +58,12 @@ export default class LoginScreen extends React.Component{
                 </View>
 
                 <TouchableOpacity style={styles.button} onPress={this.handleLogin}>
-                    <Text style={{color: '#FFF', fontWeight: '500'}}>Sign in</Text>
+                    <Text style={{color: '#FFF', fontWeight: '500', fontSize: 22}}>Sign in</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity style={{alignSelf: 'center', marginTop: 32}} onPress={() => this.props.navigation.navigate("Register")}>
                     <Text style={{color: '#414959', fontSize: 18}}>
-                        New to Social App? <Text style={{fontWeight: '500', color: '#E9446A'}}>Sign up</Text>
+                        New to Social App? <Text style={{fontWeight: '500', color: '#2971ff'}}>Sign up</Text>
                     </Text>
                 </TouchableOpacity>
 
@@ -75,7 +75,7 @@ export default class LoginScreen extends React.Component{
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-
+        backgroundColor: '#fcfcfc'
     },
     greeting: {
         marginTop: 50,
@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
     },
     inputTitle: {
         color: '#8A8F9E',
-        fontSize: 10,
+        fontSize: 15,
         textTransform: 'uppercase'
     },
     input: {
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
     },
     button: {
         marginHorizontal: 30,
-        backgroundColor: '#E9446A',
+        backgroundColor: '#2971FF',
         borderRadius: 4,
         height: 52,
         alignItems: 'center',
