@@ -30,7 +30,7 @@ import MessagesScreen from './screens/MessagesScreen';
     measurementId: "G-4ZJZFQ23PD"
   };
   // Initialize Firebase
-  // firebase.initializeApp(firebaseConfig);
+  firebase.initializeApp(firebaseConfig);
   if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
     // firebase.analytics();

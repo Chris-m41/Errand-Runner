@@ -61,14 +61,17 @@ export default class HireScreen extends Component {
     render() {
         return (
             <View style={styles.container}>
+                
                 <TouchableOpacity onPress={() => this.props.navigation.navigate('JobInfo')}>
                     <Text>Go Back</Text>
                 </TouchableOpacity>
                 <Text> Hire Screen </Text>
-                <Text>Message</Text>
-        <Text>Hi {global.name}, I would like to hire you for the {global.title} job at ${global.price}/hour.</Text>
-        <TouchableOpacity onPress={this.sendMessage}>
-            <Text>Send Request</Text>
+                <View style={styles.form}>
+                <Text style={styles.title}>Message</Text>
+        <Text style={{fontSize: 20}}>Hi {global.name}, I would like to hire you for the {global.title} job at ${global.price}/hour.</Text>
+        </View>
+        <TouchableOpacity style={styles.button} onPress={this.sendMessage}>
+            <Text style={{color: '#FFF', fontWeight: '500', fontSize: 22}}>Send Request</Text>
         </TouchableOpacity>
             </View>
         )
@@ -78,7 +81,26 @@ export default class HireScreen extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        alignItems: 'stretch',
+        justifyContent: 'center',
+        backgroundColor: '#fcfcfc'
+    },
+    button: {
+        marginHorizontal: 30,
+        backgroundColor: '#2971ff',
+        borderRadius: 4,
+        height: 52,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        marginTop: 200
+    },
+    form: {
+        marginBottom: 48,
+        marginHorizontal: 30
+    },
+    title: {
+        fontWeight: 'bold',
+        fontSize: 20,
+        textTransform: 'uppercase'
     }
 })

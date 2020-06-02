@@ -67,22 +67,12 @@ export default class DisplayJobScreen extends React.Component {
               keyExtractor={this.keyExtractor}
               renderItem={({ item }) => (
                 <View>
-                  <ScrollView horizontal={true}>
-                    {/* <TouchableWithoutFeedback>
-                      <View style={{ paddingTop: 10 }}>
-                        <Text
-                          style={{ color: "#4B0082" }}
-                          onPress={() => this.deleteItem(item)}
-                        >
-                          <Ionicons name="md-trash" size={20} />
-                        </Text>
-                      </View>
-                    </TouchableWithoutFeedback> */}
-                    
-                      <View >
+                  <ScrollView>
+                      <View style={styles.touchJob}>
                         <TouchableOpacity style={{flexDirection: 'row'}} data-id={item.key} onPress={this.sendInfo.bind(this, item.key)}>
-                        <Text>{item.title} </Text>
-                        <Text>${item.price}</Text>
+                        <Text style={{fontSize: 20, fontWeight: 'bold'}}>{item.title} </Text>
+                        <Text style={{color:'#f2f2f2'}}> {item.key} </Text>
+                        <Text style={{fontSize: 20, fontWeight: 'bold'}}>${item.price}/hr  </Text>
                         </TouchableOpacity>
                       </View>
                 
@@ -102,6 +92,15 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 100
-    }
+        marginTop: 100,
+        backgroundColor: '#FCFCFC',
+    },
+    touchJob: {
+      // backgroundColor: '#f2f2f2',
+      borderBottomColor: '#8A8F9E',
+      borderBottomWidth: StyleSheet.hairlineWidth,
+      height: 50,
+      backgroundColor: '#f2f2f2',
+      justifyContent: 'center'
+    },
 })

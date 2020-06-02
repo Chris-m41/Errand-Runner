@@ -55,8 +55,8 @@ export default class JobsScreen extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text style={{fontWeight: '500', fontSize: 20}}>Jobs Screen</Text>
-                <ScrollView style={styles.scroll}>
+                <Text style={{fontWeight: 'bold', fontSize: 20, textAlign: 'center'}}>Jobs Screen</Text>
+                <ScrollView >
                     {/* Left hand screen */}
                     {/* <View style={styles.left}> */}
                     <View style={styles.button}>
@@ -120,7 +120,7 @@ export default class JobsScreen extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center',
+        alignItems: 'stretch',
         justifyContent: 'center',
         backgroundColor: '#FCFCFC',
         marginTop: 50
@@ -133,21 +133,14 @@ const styles = StyleSheet.create({
         flex: 1
     },
     button: {
-        // borderBottomColor: '#2971FF',
         borderWidth: 1,
         borderRadius: 4,
-        // width: 125,
         height: 75,
         textAlign: 'center',
-        // flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
         margin: 10,
-        // alignContent: 'stretch',
         backgroundColor: '#2971FF',
-    },
-    scroll: {
-        width: 350,    
     },
     text: {
         color: '#FFF',
@@ -157,7 +150,7 @@ const styles = StyleSheet.create({
         paddingRight: 100,
         flex: 1,
         textAlign: 'center',
-        fontWeight: '600'
+        fontWeight: 'bold'
     },
     icon: {
         flexDirection: 'row',

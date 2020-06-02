@@ -59,6 +59,7 @@ export default class JobInfoScreen extends React.Component{
         
         return (
             <View style={styles.container}>
+                <View style={styles.displayInfo}>
                 <View>
                 <TouchableOpacity onPress={() => this.props.navigation.navigate('Display')}>
                     <Text>Go Back</Text>
@@ -67,23 +68,25 @@ export default class JobInfoScreen extends React.Component{
                 <Text>Job Info Screen</Text>
                 {/* Job Information */}
                 <View>
-                    <Text>Job: {this.state.title} ${this.state.price}/hr in {this.state.category} jobs</Text>
-                    <Text>description: {this.state.description}</Text>
+                    <Text style={styles.textBold}>Job: <Text style={styles.textNoBold}>{this.state.title} ${this.state.price}/hr in {this.state.category} jobs</Text></Text>
+                    <Text style={styles.textBold}>Description: <Text style={styles.textNoBold}>{this.state.description}</Text></Text>
                 </View>
                 {/* Freelancer Information */}
-                <View>
-                    <Text>Contact Info:</Text>
-                    <Text>{this.state.name} </Text>
-                    <Text>Phone: {this.state.phoneNumber} Email: {this.state.email}</Text>
+                <View style={{alignContent: 'flex-start'}}>
+                    <Text style={styles.textBold}>Contact Info: <Text style={styles.textNoBold}>{this.state.name} </Text></Text>
+                    <Text style={styles.textBold}>Phone: <Text style={styles.textNoBold}>{this.state.phoneNumber} </Text> </Text>
+                    <Text style={styles.textBold}>Email: <Text style={styles.textNoBold}>{this.state.email}</Text></Text> 
                 </View>
                 
                 <View>
-                    <Text>Location Info:</Text>
-                    <Text>{this.state.city} {this.state.State}, {this.state.zipCode}</Text>
+                    <Text style={styles.textBold}>Location Info: <Text style={styles.textNoBold}>{this.state.city} {this.state.State}, {this.state.zipCode}</Text></Text>
+                    
                 </View>
-                <TouchableOpacity onPress={() => this.props.navigation.navigate('Hire')}>
-                    <Text>Hire {this.state.name}</Text>
+                </View>
+                <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Hire')}>
+                    <Text style={{color: '#FFF', fontWeight: 'bold', fontSize: 22}}>Hire {this.state.name}</Text>
                 </TouchableOpacity>
+                
             </View>
         );
     }
@@ -93,6 +96,28 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'stretch',
+        backgroundColor: '#fcfcfc'
+    },
+    textBold: {
+        fontSize: 20,
+        fontWeight: 'bold'
+    },
+    textNoBold: {
+        fontSize: 20,
+        fontWeight: 'normal'
+    },
+    displayInfo: {
+        marginLeft: 30,
+
+    },
+    button: {
+        marginHorizontal: 30,
+        backgroundColor: '#2971ff',
+        borderRadius: 4,
+        height: 52,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: 200
     }
 })

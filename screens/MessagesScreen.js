@@ -53,7 +53,7 @@ export default class MessagesScreen extends Component {
         return (
             <View style={styles.container}>
           
-                <TouchableOpacity onPress={() => this.props.navigation.navigate('Jobs')}>
+                <TouchableOpacity onPress={() => this.props.navigation.navigate('Profile')}>
                     <Text>Go Back</Text>
                 </TouchableOpacity>
                
@@ -64,21 +64,10 @@ export default class MessagesScreen extends Component {
               keyExtractor={this.keyExtractor}
               renderItem={({ item }) => (
                 <View>
-                  <ScrollView horizontal={true}>
-                    {/* <TouchableWithoutFeedback>
-                      <View style={{ paddingTop: 10 }}>
-                        <Text
-                          style={{ color: "#4B0082" }}
-                          onPress={() => this.deleteItem(item)}
-                        >
-                          <Ionicons name="md-trash" size={20} />
-                        </Text>
-                      </View>
-                    </TouchableWithoutFeedback> */}
-                    
-                      <View >
+                  <ScrollView >
+                      <View style={styles.messages}>
                         {/* <TouchableOpacity style={{flexDirection: 'row'}} data-id={item.key} onPress={this.sendInfo.bind(this, item.key)}> */}
-                        <Text> {item.title} ${item.price}/hr</Text>
+                        <Text style={{fontSize: 20, fontWeight: 'bold'}}>{item.title} ${item.price}/hr</Text>
                         <Text>{item.address} {item.city} {item.State}, {item.zipCode} </Text>
                         <Text>{item.name} {item.phoneNumber} {item.email}</Text>
                         {/* </TouchableOpacity> */}
@@ -100,6 +89,12 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: 25
+        marginTop: 25,
+        backgroundColor: '#fcfcfc'
+    },
+    messages: {
+      borderBottomColor: '#8A8F9E',
+      borderBottomWidth: StyleSheet.hairlineWidth,
+      backgroundColor: '#f2f2f2'
     }
 })

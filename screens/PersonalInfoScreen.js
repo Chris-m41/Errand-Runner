@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet, TextInput, TouchableOpacity, Image, StatusBar, Alert} from 'react-native';
+import {View, Text, StyleSheet, TextInput, TouchableOpacity, Image, StatusBar, Alert, ScrollView} from 'react-native';
 import * as firebase from 'firebase';
 
 export default class PersonalInfoScreen extends React.Component{
@@ -43,13 +43,13 @@ export default class PersonalInfoScreen extends React.Component{
         return (
             <View style={styles.container}>
                 
-                <StatusBar barStyle='light-content'></StatusBar>
+                {/* <StatusBar barStyle='light-content'></StatusBar> */}
                 
                 
                 {/* Image goes here just like in the login in screen */}
 
 
-                <Text style={styles.greeting}>{`Hello!\n Sign up to get started.`}</Text>
+                <Text style={styles.greeting}>Please Enter Personal Info.</Text>
                 <TouchableOpacity onPress={() => this.props.navigation.navigate('Profile')}>
                     <Text> Go back</Text>
                 </TouchableOpacity>
@@ -62,11 +62,11 @@ export default class PersonalInfoScreen extends React.Component{
                     ></Ionicons>
                 </TouchableOpacity> */}
 
-                <View style={styles.errorMessage}>
+                {/* <View style={styles.errorMessage}>
                     {this.state.errorMessage && <Text style={styles.error}>{this.state.errorMessage}</Text>}
-                </View>
+                </View> */}
 
-                <View style={styles.form}>
+                <ScrollView style={styles.form}>
                     <View>
                         <Text style={styles.inputTitle}>Street Address</Text>
                         <TextInput 
@@ -77,7 +77,7 @@ export default class PersonalInfoScreen extends React.Component{
                         ></TextInput>
                     </View>
 
-                    <View>
+                    <View style={{marginTop: 32}}>
                         <Text style={styles.inputTitle}>city</Text>
                         <TextInput 
                         style={styles.input} 
@@ -123,11 +123,11 @@ export default class PersonalInfoScreen extends React.Component{
                         ></TextInput>
                     </View>
                     
-                    </View>
+                    </ScrollView>
                 {/* </View> */}
 
                 <TouchableOpacity style={styles.button} onPress={this.onButtonPress}>
-                    <Text style={{color: '#FFF', fontWeight: '500'}}>Sign up</Text>
+                    <Text style={{color: '#FFF', fontWeight: 'bold', fontSize: 18}}>Sign up</Text>
                 </TouchableOpacity>
 
             </View>
@@ -165,7 +165,7 @@ const styles = StyleSheet.create({
     },
     inputTitle: {
         color: '#8A8F9E',
-        fontSize: 10,
+        fontSize: 15,
         textTransform: 'uppercase'
     },
     input: {
@@ -177,11 +177,12 @@ const styles = StyleSheet.create({
     },
     button: {
         marginHorizontal: 30,
-        backgroundColor: '#E9446A',
+        backgroundColor: '#2971FF',
         borderRadius: 4,
         height: 52,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        marginBottom: 25
     },
     avatar: {
         width: 100,

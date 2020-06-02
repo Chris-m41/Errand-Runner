@@ -45,28 +45,28 @@ export default class ProfileScreen extends React.Component{
             <View style={styles.container}>
 
                 {/* User Information */}
-
-                <Text>Hi {this.state.displayName}!</Text>
-                <Text>Email: {this.state.email}</Text>
-                <Text>Address: {this.state.address} {this.state.city} {this.state.State}, {this.state.zipCode}</Text>
-                <Text>Phone Number: {this.state.phoneNumber}</Text>
-
+                <View >
+                    <Text style={styles.info}>Name: <Text style={{fontWeight:'400'}}>{this.state.displayName}</Text></Text>
+                    <Text style={styles.info}>Email: <Text style={{fontWeight:'400'}}>{this.state.email}</Text></Text>
+                    <Text style={styles.info}>Address: <Text style={{fontWeight:'400'}}>{this.state.address} {this.state.city} {this.state.State}, {this.state.zipCode}</Text></Text>
+                    <Text style={styles.info}>Phone Number: <Text style={{fontWeight: '400'}}>{this.state.phoneNumber}</Text></Text>
+                </View>
                 {/* Logout/ change info/ add job */}
 
-                <TouchableOpacity style={styles.logout} onPress={() => this.props.navigation.navigate('Add')}>
-                    <Text>Add Job</Text>
+                <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Add')}>
+                    <Text style={styles.text}>Add Job</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.logout} onPress={() => this.props.navigation.navigate('Info')}>
-                    <Text>Add/Change Information</Text>
+                <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Info')}>
+                    <Text style={styles.text}>Add/Change Information</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.logout} onPress={() => this.props.navigation.navigate('Messages')}>
-                    <Text>View Messages</Text>
+                <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Messages')}>
+                    <Text style={styles.text}>View Messages</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.logout} onPress={this.signOutUser}>
-                    <Text>Logout</Text>
+                <TouchableOpacity style={styles.button} onPress={this.signOutUser}>
+                    <Text style={styles.text}>Logout</Text>
                 </TouchableOpacity>
             </View>
         );
@@ -77,10 +77,29 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'stretch',
+        backgroundColor: '#fcfcfc'
     },
-    logout: {
-        marginTop: 32,
-        backgroundColor: 'pink'
+    button: {
+        marginTop: 10,
+        backgroundColor: '#2971FF',
+        borderWidth: 1,
+        borderRadius: 4,
+        height: 75,
+        textAlign: 'center',
+        alignItems: 'stretch',
+        justifyContent: 'center',
+        margin: 10,
+    },
+    text: {
+        textAlign: 'center',
+        color: '#FFF',
+        fontWeight: '600',
+        fontSize: 18
+    },
+    info: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        textAlign: 'center'
     }
 })

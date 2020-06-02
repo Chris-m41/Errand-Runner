@@ -81,30 +81,33 @@ export default class AddJob extends React.Component {
     render() {
         return (
             <View style={styles.container}>
+                <TouchableOpacity onPress={() => this.props.navigation.navigate('Profile')}>
+                    <Text>Go back</Text>
+                </TouchableOpacity>
                 <Text> Add Job Screen </Text>
-     
+                <View style={styles.form}>
                 <View>
-                    <Text>Title:</Text>
+                    <Text style={styles.inputTitle}>Title</Text>
                     <TextInput
                         style={styles.input}
-                        autoCapitalize='none'
+                        autoCapitalize= 'words'
                         onChangeText={title => this.setState({title})}
                         value={this.state.title}
                     ></TextInput>
                 </View>
                 
                 <View>
-                    <Text>description:</Text>
+                    <Text style={styles.inputTitle}>Description</Text>
                     <TextInput
                         style={styles.input}
-                        autoCapitalize='none'
+                        autoCapitalize='sentences'
                         onChangeText={description => this.setState({description})}
                         value={this.state.description}
                     ></TextInput>
                 </View>
 
                 <View>
-                <Text>price:</Text>
+                <Text style={styles.inputTitle}>Price</Text>
                     <TextInput
                         style={styles.input}
                         autoCapitalize='none'
@@ -114,6 +117,8 @@ export default class AddJob extends React.Component {
                 </View>
 
             <View>
+            <Text style={styles.inputTitle}>Category</Text>
+            <Text style = {styles.input}>{this.state.user}</Text>
             <Picker style={styles.pickerStyle} selectedValue = {this.state.user} onValueChange = {this.updateUser}>
                <Picker.Item label = "Lawn" value = "Lawn" />
                <Picker.Item label = "Grocery" value = "Grocery" />
@@ -125,12 +130,12 @@ export default class AddJob extends React.Component {
                <Picker.Item label = "Catering" value = "Catering" />
                <Picker.Item label = "Pet Care" value = "Pet Care" />
             </Picker>
-            <Text style = {styles.text}>{this.state.user}</Text>
-            </View>
             
+            </View>
+            </View>
 
             <TouchableOpacity style={styles.button} onPress={this.addJobPost}>
-                    <Text style={{color: '#FFF', fontWeight: '500'}}>Sign up</Text>
+                    <Text style={{color: '#FFF', fontWeight: '500', fontSize: 22}}>Post Job</Text>
                 </TouchableOpacity>
             
             </View>
@@ -142,7 +147,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        // alignItems: 'center'
+        backgroundColor: '#fcfcfc'
     },
     text: {
         fontSize: 20,
@@ -150,10 +155,26 @@ const styles = StyleSheet.create({
      },
      button: {
         marginHorizontal: 30,
-        backgroundColor: '#E9446A',
+        backgroundColor: '#2971FF',
         borderRadius: 4,
         height: 52,
         alignItems: 'center',
         justifyContent: 'center'
     },
+    inputTitle: {
+        color: '#8A8F9E',
+        fontSize: 15,
+        textTransform: 'uppercase'
+    },
+    input: {
+        borderBottomColor: '#8A8F9E',
+        borderBottomWidth: StyleSheet.hairlineWidth,
+        height: 40,
+        fontSize: 15,
+        color: '#161F3D'
+    },
+    form: {
+        marginBottom: 48,
+        marginHorizontal: 30
+    }
 })
