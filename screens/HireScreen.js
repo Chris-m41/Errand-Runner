@@ -1,5 +1,6 @@
-import React, { Component } from 'react'
-import { Text, StyleSheet, View, TouchableOpacity, Alert } from 'react-native'
+import React, { Component } from 'react';
+import { Text, StyleSheet, View, TouchableOpacity, Alert } from 'react-native';
+import {Ionicons} from '@expo/vector-icons';
 import * as firebase from "firebase";
 
 export default class HireScreen extends Component {
@@ -63,9 +64,9 @@ export default class HireScreen extends Component {
             <View style={styles.container}>
                 
                 <TouchableOpacity onPress={() => this.props.navigation.navigate('JobInfo')}>
-                    <Text>Go Back</Text>
+                <Ionicons style={{marginLeft: 50, marginTop: 50}} name='md-arrow-round-back' size={35}/>
                 </TouchableOpacity>
-                <Text> Hire Screen </Text>
+                <Text style={{textAlign: 'center', fontSize: 24, fontWeight: 'bold', marginBottom: 75}}> Hire Screen </Text>
                 <View style={styles.form}>
                 <Text style={styles.title}>Message</Text>
         <Text style={{fontSize: 20}}>Hi {global.name}, I would like to hire you for the {global.title} job at ${global.price}/hour.</Text>
@@ -82,7 +83,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'stretch',
-        justifyContent: 'center',
+        // justifyContent: 'center',
         backgroundColor: '#fcfcfc'
     },
     button: {

@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, FlatList, ScrollView} from 'react-native';
+import {Ionicons} from '@expo/vector-icons';
 import * as firebase from 'firebase';
 
 export default class DisplayJobScreen extends React.Component {
@@ -57,10 +58,10 @@ export default class DisplayJobScreen extends React.Component {
             <View style={styles.container}>
           
                 <TouchableOpacity onPress={() => this.props.navigation.navigate('Jobs')}>
-                    <Text>Go Back</Text>
+                <Ionicons style={{marginLeft: 50, marginTop: 50}} name='md-arrow-round-back' size={35}/>
                 </TouchableOpacity>
                
-                <Text>Display Jobs Screen: {global.MyVar}</Text>     
+                <Text style={{textAlign: 'center', fontSize: 24, fontWeight: 'bold'}}>Display Jobs Screen: {global.MyVar}</Text>     
                 <View style={{flex: 1, alignItems: 'center',justifyContent: 'center', marginTop: 50}}>
                 <FlatList
               data={this.state.dataSource}
@@ -90,9 +91,9 @@ export default class DisplayJobScreen extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: 100,
+        // justifyContent: 'center',
+        // alignItems: 'center',
+        // marginTop: 100,
         backgroundColor: '#FCFCFC',
     },
     touchJob: {

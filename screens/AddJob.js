@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, StyleSheet, View, TextInput, Picker, TouchableOpacity, Alert } from 'react-native';
+import {Ionicons} from '@expo/vector-icons';
 import * as firebase from 'firebase';
 
 export default class AddJob extends React.Component {
@@ -60,21 +61,26 @@ export default class AddJob extends React.Component {
             email: this.state.email
             }
             console.log("this.state.user: after updates : " + this.state.user)
-            if(category == null || this.state.description == null || this.state.price == null || this.state.title == null){
-                Alert.alert('Missing information')
-                console.log("Missing information")
-                return
-            } 
+            // if(category == null || this.state.description == null || this.state.price == null || this.state.title == null){
+            //     Alert.alert('Missing information')
+            //     console.log("Missing information")
+            //     return
+            // } 
             
         return firebase.database().ref().update(updates)
     }
 
     addJobPost = () => {
-        this.createJobPost();
-        Alert.alert('Information saved')
-        console.log("information saved")
-        this.props.navigation.navigate('Profile')
         
+        
+        if(this.state.description == "" || this.state.price == "" || this.state.title == "" || this.state.user == ""){
+            Alert.alert("Information not saved.\nMissing information")
+            return;
+        } else {
+            this.createJobPost();
+            Alert.alert('Information saved')
+        this.props.navigation.navigate('Profile')
+        }
     }
    
 
@@ -82,16 +88,17 @@ export default class AddJob extends React.Component {
         return (
             <View style={styles.container}>
                 <TouchableOpacity onPress={() => this.props.navigation.navigate('Profile')}>
-                    <Text>Go back</Text>
+                    <Ionicons style={{marginLeft: 50,marginTop: 50}} name='md-arrow-round-back' size={35}/>
                 </TouchableOpacity>
-                <Text> Add Job Screen </Text>
                 <View style={styles.form}>
+                    <Text style={{textAlign: 'center', fontSize: 24, fontWeight: 'bold'}}>Add Job</Text>
                 <View>
                     <Text style={styles.inputTitle}>Title</Text>
                     <TextInput
                         style={styles.input}
                         autoCapitalize= 'words'
                         onChangeText={title => this.setState({title})}
+                        maxLength={12}
                         value={this.state.title}
                     ></TextInput>
                 </View>
@@ -102,6 +109,7 @@ export default class AddJob extends React.Component {
                         style={styles.input}
                         autoCapitalize='sentences'
                         onChangeText={description => this.setState({description})}
+                        maxLength={100}
                         value={this.state.description}
                     ></TextInput>
                 </View>
@@ -112,6 +120,7 @@ export default class AddJob extends React.Component {
                         style={styles.input}
                         autoCapitalize='none'
                         onChangeText={price => this.setState({price})}
+                        maxLength={2}
                         value={this.state.price}
                     ></TextInput>
                 </View>
@@ -146,7 +155,7 @@ export default class AddJob extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
+        // justifyContent: 'center',
         backgroundColor: '#fcfcfc'
     },
     text: {
@@ -175,6 +184,7 @@ const styles = StyleSheet.create({
     },
     form: {
         marginBottom: 48,
-        marginHorizontal: 30
+        marginHorizontal: 30,
+        marginTop: 50
     }
 })

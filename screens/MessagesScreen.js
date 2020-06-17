@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Text, StyleSheet, View, TouchableOpacity, FlatList, ScrollView,TouchableWithoutFeedback } from 'react-native'
+import { Text, StyleSheet, View, TouchableOpacity, FlatList, ScrollView } from 'react-native'
+import {Ionicons} from '@expo/vector-icons'
 import * as firebase from 'firebase'
 
 export default class MessagesScreen extends Component {
@@ -54,10 +55,9 @@ export default class MessagesScreen extends Component {
             <View style={styles.container}>
           
                 <TouchableOpacity onPress={() => this.props.navigation.navigate('Profile')}>
-                    <Text>Go Back</Text>
+                    <Ionicons style={{marginLeft: 50}} name='md-arrow-round-back' size={35}/>
                 </TouchableOpacity>
                
-                <Text>Messages Screen:</Text>     
                 <View style={{flex: 1, alignItems: 'center',justifyContent: 'center', marginTop: 50}}>
                 <FlatList
               data={this.state.dataSource}
@@ -87,9 +87,9 @@ export default class MessagesScreen extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center',
+        // alignItems: 'center',
         justifyContent: 'center',
-        marginTop: 25,
+        marginTop: 50,
         backgroundColor: '#fcfcfc'
     },
     messages: {

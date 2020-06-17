@@ -1,5 +1,6 @@
 import React from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, FlatList, ScrollView, TouchableWithoutFeedback, LayoutAnimation} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, LayoutAnimation} from 'react-native';
+import {Ionicons} from '@expo/vector-icons'
 import * as firebase from 'firebase';
 
 export default class JobInfoScreen extends React.Component{
@@ -59,13 +60,12 @@ export default class JobInfoScreen extends React.Component{
         
         return (
             <View style={styles.container}>
-                <View style={styles.displayInfo}>
-                <View>
                 <TouchableOpacity onPress={() => this.props.navigation.navigate('Display')}>
-                    <Text>Go Back</Text>
+                <Ionicons style={{marginLeft: 50, marginTop: 50}} name='md-arrow-round-back' size={35}/>
+                <Text style={{textAlign: 'center', fontSize: 24, fontWeight: 'bold', marginBottom: 50}}>Job Info Screen</Text>
                 </TouchableOpacity>
-                </View>
-                <Text>Job Info Screen</Text>
+                <View style={styles.displayInfo}>
+            
                 {/* Job Information */}
                 <View>
                     <Text style={styles.textBold}>Job: <Text style={styles.textNoBold}>{this.state.title} ${this.state.price}/hr in {this.state.category} jobs</Text></Text>
@@ -95,7 +95,7 @@ export default class JobInfoScreen extends React.Component{
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
+        // justifyContent: 'center',
         alignItems: 'stretch',
         backgroundColor: '#fcfcfc'
     },

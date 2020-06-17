@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, Text, StyleSheet, TextInput, TouchableOpacity, Image, StatusBar, Alert, ScrollView} from 'react-native';
+import {Ionicons} from '@expo/vector-icons';
 import * as firebase from 'firebase';
 
 export default class PersonalInfoScreen extends React.Component{
@@ -32,9 +33,14 @@ export default class PersonalInfoScreen extends React.Component{
     }
 
     onButtonPress = () => {
-        this.createUserInfo();
+        if(this.state.address == "" || this.state.zipCode == "" || this.state.State == "" || this.state.phoneNumber == "" || this.state.city == ""){
+            Alert.alert("Some information is missing.\nInformation not saved.")
+            return;
+        } else {
+            this.createUserInfo();
         Alert.alert('Info Saved');
         this.props.navigation.navigate('Profile');
+        }
     }
 
     //testing write/set user data to google firebase
@@ -48,11 +54,11 @@ export default class PersonalInfoScreen extends React.Component{
                 
                 {/* Image goes here just like in the login in screen */}
 
-
-                <Text style={styles.greeting}>Please Enter Personal Info.</Text>
                 <TouchableOpacity onPress={() => this.props.navigation.navigate('Profile')}>
-                    <Text> Go back</Text>
+                    <Ionicons style={{marginLeft: 50, marginTop: 50}} name='md-arrow-round-back' size={35}/>
                 </TouchableOpacity>
+                <Text style={styles.greeting}>Please Enter Personal Info.</Text>
+               
                 {/* <TouchableOpacity style={styles.avatar}>
                     <Ionicons
                         name='ios-add'
@@ -137,11 +143,11 @@ export default class PersonalInfoScreen extends React.Component{
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        // flex: 1,
 
     },
     greeting: {
-        marginTop: 50,
+        marginBottom: 20,
         fontSize: 18,
         fontWeight: '400',
         textAlign: 'center',
